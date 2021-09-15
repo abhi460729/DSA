@@ -1,0 +1,24 @@
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        //Recursive Solution
+        if(head==NULL || head->next==NULL)
+            return head;
+        ListNode * rev=reverseList(head->next);//1<-2<-3<-4<-5
+        head->next->next=head;
+        head->next=NULL;
+        return rev;
+        //Iterative Solution
+        ListNode * prev=NULL;
+        ListNode * curr=head;
+        ListNode * next=NULL;
+        while(curr!=NULL){
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+        return head;
+    }
+};
